@@ -75,7 +75,7 @@ export default function RCLoginPage(props) {
 
           <button
             onClick={handleLogin}
-            className="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-2xl text-lg font-semibold shadow-lg"
+            className="w-full bg-[#1D3587] hover:bg-[#1D3587] text-white py-3 rounded-2xl text-lg font-semibold shadow-lg cursor-pointer"
           >
             Sign In
           </button>

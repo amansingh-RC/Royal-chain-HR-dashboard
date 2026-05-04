@@ -42,3 +42,17 @@ export async function syncFile(file) {
   if (!res.ok) throw new Error(data.error || 'Sync failed');
   return data;
 }
+
+export async function clearAllData() {
+  const res = await fetch(BASE + '/sync/clear', { method: 'POST' });
+  const ct  = res.headers.get('content-type') || '';
+  if (!ct.includes('application/json')) {
+    throw new Error(
+      'Server returned HTML, not JSON. The /api/sync/clear endpoint is missing — ' +
+      'restart the backend server (Ctrl+C in the server terminal, then `node index.js`).'
+    );
+  }
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'Clear failed');
+  return data;
+}

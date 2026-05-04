@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import { Upload, RefreshCw, CheckCircle, AlertCircle } from "lucide-react";
-import { syncFile } from "../data/api";
+import { Upload, RefreshCw, CheckCircle, AlertCircle, Trash2 } from "lucide-react";
+import { syncFile, clearAllData } from "../data/api";
 
 const COLUMNS = [
   { header: "Employee Name", note: "" },
@@ -21,6 +21,8 @@ function SyncToDB() {
   const [file, setFile]     = useState(null);
   const [status, setStatus] = useState("");
   const [message, setMsg]   = useState("");
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [clearing, setClearing] = useState(false);
   const inputRef            = useRef();
 
   function handleFileChange(e) {
@@ -28,6 +30,23 @@ function SyncToDB() {
     setFile(f || null);
     setStatus("");
     setMsg("");
+  }
+
+  async function handleClear() {
+    setShowConfirm(false);
+    setClearing(true);
+    setStatus("");
+    setMsg("");
+    try {
+      const result = await clearAllData();
+      setStatus("done");
+      setMsg(result.message + " You can now upload a fresh Excel file with new employees.");
+    } catch (err) {
+      setStatus("error");
+      setMsg(err.message);
+    } finally {
+      setClearing(false);
+    }
   }
 
   async function handleSync() {
@@ -139,6 +158,61 @@ function SyncToDB() {
           </div>
         )}
       </div>
+
+      {/* Danger Zone */}
+      <div className="bg-white rounded-2xl shadow-md p-8 max-w-3xl mt-6 border border-red-200">
+        <div className="flex items-start justify-between gap-6">
+          <div>
+            <h2 className="text-lg font-semibold text-red-700 flex items-center gap-2">
+              <AlertCircle size={18} /> Danger Zone
+            </h2>
+            <p className="text-gray-500 text-sm mt-1">
+              Permanently delete <b>all</b> employees and attendance records from the database.
+              This cannot be undone. Use this when you want to start fresh with new employee data.
+            </p>
+          </div>
+          <button
+            onClick={function() { setShowConfirm(true); }}
+            disabled={clearing}
+            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white px-5 py-2.5 rounded-xl text-sm font-semibold cursor-pointer shrink-0"
+          >
+            <Trash2 size={16} />
+            {clearing ? "Clearing..." : "Clear All Data"}
+          </button>
+        </div>
+      </div>
+
+      {/* Confirmation Modal */}
+      {showConfirm && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="bg-red-100 p-2.5 rounded-full">
+                <AlertCircle className="text-red-600" size={22} />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900">Delete All Employee Data?</h3>
+            </div>
+            <p className="text-gray-600 text-sm mb-6">
+              This will permanently delete <b>all employees</b> and <b>all attendance records</b>
+              from the database. This action cannot be undone.
+            </p>
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={function() { setShowConfirm(false); }}
+                className="px-5 py-2.5 rounded-xl border border-gray-300 text-sm font-semibold text-gray-700 hover:bg-gray-50 cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleClear}
+                className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-sm font-semibold cursor-pointer"
+              >
+                Yes, Delete Everything
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -20,14 +20,14 @@ function DashboardHome() {
 
   if (loading) return (
     <div className="flex-1 flex items-center justify-center bg-gray-100 min-h-screen">
-      <RefreshCw className="animate-spin text-blue-700" size={36} />
+      <RefreshCw className="animate-spin text-[#1D3587]" size={36} />
     </div>
   );
 
   if (error) return (
     <div className="flex-1 p-8 bg-gray-100 min-h-screen">
       <p className="text-red-500 font-medium">Error: {error}</p>
-      <button onClick={load} className="mt-3 text-blue-700 underline text-sm">Retry</button>
+      <button onClick={load} className="mt-3 text-[#1D3587] underline text-sm">Retry</button>
     </div>
   );
 
@@ -82,9 +82,9 @@ function DashboardHome() {
                   <p className="text-xs text-gray-500 mb-1 truncate">{dept}</p>
                   <div className="flex items-center gap-2">
                     <div className="flex-1 bg-gray-100 rounded-full h-3 overflow-hidden">
-                      <div className="bg-blue-600 h-3 rounded-full" style={{ width: (d.present / maxPresent * 100) + '%' }} />
+                      <div className="bg-[#1D3587] h-3 rounded-full" style={{ width: (d.present / maxPresent * 100) + '%' }} />
                     </div>
-                    <span className="text-xs text-blue-700 w-5 text-right">{d.present}</span>
+                    <span className="text-xs text-[#1D3587] w-5 text-right">{d.present}</span>
                     <div className="flex-1 bg-gray-100 rounded-full h-3 overflow-hidden">
                       <div className="bg-red-400 h-3 rounded-full" style={{ width: (d.absent / maxPresent * 100) + '%' }} />
                     </div>
@@ -95,7 +95,7 @@ function DashboardHome() {
             })}
           </div>
           <div className="flex gap-4 mt-4">
-            <span className="flex items-center gap-1 text-xs text-gray-500"><span className="w-3 h-3 rounded-full bg-blue-600 inline-block" /> Present</span>
+            <span className="flex items-center gap-1 text-xs text-gray-500"><span className="w-3 h-3 rounded-full bg-[#1D3587] inline-block" /> Present</span>
             <span className="flex items-center gap-1 text-xs text-gray-500"><span className="w-3 h-3 rounded-full bg-red-400 inline-block" /> Absent</span>
           </div>
         </div>
@@ -110,7 +110,7 @@ function DashboardHome() {
                 <div key={dept} className="flex items-center gap-3">
                   <p className="text-xs text-gray-600 w-36 truncate shrink-0">{dept}</p>
                   <div className="flex-1 bg-gray-100 rounded-full h-4 overflow-hidden">
-                    <div className="bg-blue-800 h-4 rounded-full" style={{ width: (d.total / maxTotal * 100) + '%' }} />
+                    <div className="bg-[#1D3587] h-4 rounded-full" style={{ width: (d.total / maxTotal * 100) + '%' }} />
                   </div>
                   <span className="text-xs text-gray-700 w-5 text-right">{d.total}</span>
                 </div>
