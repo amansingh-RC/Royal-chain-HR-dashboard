@@ -19,7 +19,7 @@ function ServerOfflineBanner() {
   );
 }
 
-function DashboardLayout({ loggedInUser }) {
+function DashboardLayout({ loggedInUser, onLogout }) {
   const [activePage, setActivePage] = useState("Dashboard");
   const [serverOnline, setServerOnline] = useState(true);
 
@@ -37,7 +37,7 @@ function DashboardLayout({ loggedInUser }) {
   function renderPage() {
     switch (activePage) {
       case "Dashboard":     return <DashboardHome />;
-      case "Profile":       return <Profile loggedInUser={loggedInUser} />;
+      case "Profile":       return <Profile loggedInUser={loggedInUser} onLogout={onLogout} />;
       case "Employees":     return <Employees />;
       case "Reports":       return <Reports />;
       case "Sync To DB":    return <SyncToDB />;

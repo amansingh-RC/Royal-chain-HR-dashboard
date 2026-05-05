@@ -1,4 +1,4 @@
-const BASE = '/api';
+const BASE = 'https://hr-dashboard-backend-hw9y.onrender.com/api';
 
 export async function fetchDashboard() {
   const res = await fetch(BASE + '/dashboard');
