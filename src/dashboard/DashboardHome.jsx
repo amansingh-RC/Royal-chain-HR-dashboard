@@ -2,6 +2,27 @@ import React, { useState, useEffect } from "react";
 import { Users, UserCheck, UserX, RefreshCw } from "lucide-react";
 import { fetchDashboard } from "../data/api";
 
+function formatDate(value) {
+  if (!value) return "—";
+
+  // Excel serial date (e.g. 45930) → real date
+  if (!isNaN(value) && Number(value) > 1000) {
+    const excelStart = new Date(1899, 11, 30);
+    const converted  = new Date(excelStart.getTime() + Number(value) * 86400000);
+    const day   = String(converted.getDate()).padStart(2, "0");
+    const month = String(converted.getMonth() + 1).padStart(2, "0");
+    const year  = converted.getFullYear();
+    return `${day}-${month}-${year}`;
+  }
+
+  const d = new Date(value);
+  if (isNaN(d.getTime())) return value;
+  const day   = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year  = d.getFullYear();
+  return `${day}-${month}-${year}`;
+}
+
 function DashboardHome() {
   const [stats, setStats]     = useState(null);
   const [loading, setLoading] = useState(true);
@@ -55,7 +76,7 @@ function DashboardHome() {
         <div className="bg-white rounded-2xl shadow-md p-6 flex items-center gap-4">
           <div className="bg-green-100 p-3 rounded-xl"><UserCheck className="text-green-600" size={28} /></div>
           <div>
-            <p className="text-gray-500 text-sm">Present on {stats.latestDate}</p>
+            <p className="text-gray-500 text-sm">Present on {formatDate(stats.latestDate)}</p>
             <p className="text-4xl font-bold mt-1 text-green-600">{stats.present}</p>
           </div>
         </div>
@@ -63,7 +84,7 @@ function DashboardHome() {
         <div className="bg-white rounded-2xl shadow-md p-6 flex items-center gap-4">
           <div className="bg-red-100 p-3 rounded-xl"><UserX className="text-red-500" size={28} /></div>
           <div>
-            <p className="text-gray-500 text-sm">Absent on {stats.latestDate}</p>
+            <p className="text-gray-500 text-sm">Absent on {formatDate(stats.latestDate)}</p>
             <p className="text-4xl font-bold mt-1 text-red-500">{stats.absent}</p>
           </div>
         </div>
@@ -74,7 +95,7 @@ function DashboardHome() {
         {/* Department Attendance */}
         <div className="bg-white rounded-2xl shadow-md p-6">
           <h2 className="font-semibold text-gray-700 mb-1">Department Attendance</h2>
-          <p className="text-xs text-gray-400 mb-5">Present vs. Absent employees by department for {stats.latestDate}.</p>
+          <p className="text-xs text-gray-400 mb-5">Present vs. Absent employees by department for {formatDate(stats.latestDate)}.</p>
           <div className="space-y-4">
             {deptEntries.map(function([dept, d]) {
               return (

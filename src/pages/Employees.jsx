@@ -174,7 +174,7 @@ function EmployeeModal({ employee, onClose }) {
 
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-700 ml-4"
+            className="text-gray-400 hover:text-gray-700 ml-4 cursor-pointer"
           >
             <X size={22} />
           </button>
@@ -221,7 +221,7 @@ function EmployeeModal({ employee, onClose }) {
 
             <button
               onClick={exportCSV}
-              className="flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm font-semibold"
+              className="flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer"
             >
               <Download size={15} /> Export CSV
             </button>
@@ -297,7 +297,7 @@ function EmployeeModal({ employee, onClose }) {
         <div className="px-6 py-4 border-t flex justify-end">
           <button
             onClick={onClose}
-            className="border px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-50"
+            className="border px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-50 cursor-pointer"
           >
             Close
           </button>

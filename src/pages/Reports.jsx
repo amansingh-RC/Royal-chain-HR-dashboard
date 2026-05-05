@@ -187,14 +187,14 @@ function Reports() {
 
           <button
             onClick={applyFilter}
-            className="flex items-center gap-2 border border-[#1D3587] text-[#1D3587] hover:bg-blue-50 px-4 py-2 rounded-xl text-sm font-semibold"
+            className="flex items-center gap-2 border border-[#1D3587] text-[#1D3587] hover:bg-blue-50 px-4 py-2 rounded-xl text-sm font-semibold cursor-popinter"
           >
             <Filter size={15} /> Apply Filter
           </button>
 
           <button
             onClick={exportCSV}
-            className="flex items-center gap-2 bg-[#1D3587] text-white px-4 py-2 rounded-xl text-sm font-semibold"
+            className="flex items-center gap-2 bg-[#1D3587] text-white px-4 py-2 rounded-xl text-sm font-semibold cursor-pointer"
           >
             <Download size={15} /> Export to Excel
           </button>
