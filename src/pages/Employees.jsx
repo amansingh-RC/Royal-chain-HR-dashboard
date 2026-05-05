@@ -212,7 +212,7 @@ function EmployeeModal({ employee, onClose }) {
               onChange={function (e) {
                 setMonth(e.target.value);
               }}
-              className="border rounded-lg px-3 py-1.5 text-sm outline-none"
+              className="border rounded-lg px-3 py-1.5 text-sm outline-none hidden"
             >
               {MONTHS.map(function (m) {
                 return <option key={m}>{m}</option>;
@@ -370,7 +370,7 @@ function Employees() {
             onChange={function (e) {
               setMonth(e.target.value);
             }}
-            className="border rounded-xl px-4 py-2 text-sm outline-none"
+            className="border rounded-xl px-4 py-2 text-sm outline-none hidden"
           >
             {MONTHS.map(function (m) {
               return <option key={m}>{m}</option>;

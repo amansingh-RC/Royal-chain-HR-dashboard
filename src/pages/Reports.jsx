@@ -168,7 +168,7 @@ function Reports() {
           <select
             value={month}
             onChange={(e) => setMonth(e.target.value)}
-            className="border rounded-xl px-4 py-2 text-sm outline-none"
+            className="border rounded-xl px-4 py-2 text-sm outline-none hidden"
           >
             {MONTHS.map((m) => <option key={m}>{m}</option>)}
           </select>
