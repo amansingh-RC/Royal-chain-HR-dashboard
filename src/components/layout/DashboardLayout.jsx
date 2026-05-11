@@ -25,7 +25,7 @@ function DashboardLayout({ loggedInUser, onLogout }) {
 
   useEffect(function() {
     function check() {
-      fetch('/api/health')
+      fetch('https://hr-dashboard-backend-hw9y.onrender.com/api/health')
         .then(function(r) { setServerOnline(r.ok); })
         .catch(function() { setServerOnline(false); });
     }
