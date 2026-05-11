@@ -28,7 +28,7 @@ function HRProcessing() {
       const form = new FormData();
       form.append("file", file);
 
-      const res = await fetch("/api/process", { method: "POST", body: form });
+      const res = await fetch("https://hr-dashboard-backend-hw9y.onrender.com/api/process", { method: "POST", body: form });
 
       const ct = res.headers.get("content-type") || "";
       if (!res.ok) {
