@@ -131,9 +131,8 @@ function HRProcessing() {
               <p className="text-green-700 text-sm font-semibold">File processed successfully.</p>
               {stats && (
                 <p className="text-green-600 text-sm mt-1">
-                  Scanned <b>{stats.dpRows}</b> DP row(s).
-                  Normalized <b>{stats.arrvFixed}</b> ARRV value(s) and{" "}
-                  <b>{stats.deptFixed}</b> DEPT value(s).
+                  Scanned <b>{stats.dpRows}</b> DP row(s), normalized <b>{stats.arrvFixed}</b> ARRV and <b>{stats.deptFixed}</b> DEPT value(s).
+                  Cleaned <b>{stats.woPhRows}</b> WO/PH row(s) (ARRV & DEPT blanked).
                 </p>
               )}
               <p className="text-green-600 text-xs mt-2">
