@@ -81,6 +81,7 @@ function EmployeeModal({ employee, onClose }) {
     if (!data) return;
 
     const header = [
+      "S.No",
       "Employee Code",
       "Employee Name",
       "Branch",
@@ -94,8 +95,9 @@ function EmployeeModal({ employee, onClose }) {
       "DEPT",
     ];
 
-    const rows = data.records.map(function (r) {
+    const rows = data.records.map(function (r, index) {
       return [
+        index + 1,
         employee.code,
         employee.name,
         employee.branch || "",

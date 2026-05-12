@@ -101,12 +101,13 @@ function Reports() {
 
   function exportCSV() {
     const header = [
-      "Employee Name","Employee Code","Join Date","Branch","Department",
+      "S.No","Employee Name","Employee Code","Join Date","Branch","Department",
       "Day","Date","SPST","SHIFT IN","SHIFT OUT","ARRV","DEPT"
     ];
 
-    const lines = rows.map(function (r) {
+    const lines = rows.map(function (r, index) {
       return [
+        index + 1,
         r.name,
         r.code,
         formatDate(r.joinDate),
@@ -214,6 +215,7 @@ function Reports() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="text-gray-500 text-xs border-b bg-gray-50">
+                    <th className="text-left py-3 px-3">S.No</th>
                     <th className="text-left py-3 px-3">Employee Name</th>
                     <th className="text-left py-3 px-3">Employee Code</th>
                     <th className="text-left py-3 px-3">Join Date</th>
@@ -232,15 +234,17 @@ function Reports() {
                 <tbody>
                   {paginatedRows.length === 0 && (
                     <tr>
-                      <td colSpan={12} className="text-center py-10 text-gray-400">
+                      <td colSpan={13} className="text-center py-10 text-gray-400">
                         No records found.
                       </td>
                     </tr>
                   )}
 
                   {paginatedRows.map(function (r, i) {
+                    const serialNumber = startIndex + i + 1;
                     return (
                       <tr key={i} className="border-b last:border-0 hover:bg-gray-50">
+                        <td className="py-2.5 px-3 text-gray-600 font-semibold">{serialNumber}</td>
                         <td className="py-2.5 px-3 font-medium text-[#1D3587]">{r.name}</td>
                         <td className="py-2.5 px-3 text-gray-600">{r.code}</td>
                         <td className="py-2.5 px-3 text-gray-600">{formatDate(r.joinDate)}</td>
