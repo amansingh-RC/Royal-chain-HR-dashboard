@@ -101,13 +101,12 @@ function Reports() {
 
   function exportCSV() {
     const header = [
-      "S.No","Employee Name","Employee Code","Join Date","Branch","Department",
+      "Employee Name","Employee Code","Join Date","Branch","Department",
       "Day","Date","SPST","SHIFT IN","SHIFT OUT","ARRV","DEPT"
     ];
 
     const lines = rows.map(function (r, index) {
       return [
-        index + 1,
         r.name,
         r.code,
         formatDate(r.joinDate),
