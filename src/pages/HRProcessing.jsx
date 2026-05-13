@@ -70,7 +70,6 @@ function HRProcessing() {
   return (
     <div className="p-8 w-full bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-1">Manage HR Database</h1>
-      <p className="text-gray-500 text-sm mb-8">Update Employee Times</p>
 
       <div className="bg-white rounded-2xl shadow-md p-8 max-w-2xl">
         <div className="flex items-center gap-3 mb-2">
@@ -129,12 +128,6 @@ function HRProcessing() {
             <CheckCircle className="text-green-600 shrink-0 mt-0.5" size={20} />
             <div>
               <p className="text-green-700 text-sm font-semibold">File processed successfully.</p>
-              {stats && (
-                <p className="text-green-600 text-sm mt-1">
-                  Scanned <b>{stats.dpRows}</b> DP row(s), normalized <b>{stats.arrvFixed}</b> ARRV and <b>{stats.deptFixed}</b> DEPT value(s).
-                  Cleaned <b>{stats.woPhRows}</b> WO/PH row(s) (ARRV & DEPT blanked).
-                </p>
-              )}
               <p className="text-green-600 text-xs mt-2">
                 Click <b>Download File</b>, then upload it in <b>Sync to DB</b>.
               </p>
